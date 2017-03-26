@@ -14,7 +14,7 @@ function [ F ] = ransacF( pts1, pts2, M )
 %     points are inliers, and any other optimizations you made
 nIter = 100;
 bestF = zeros(3,3);
-bestIn = 0;
+bestIn = 0
 
 for i=1:nIter
 
@@ -22,20 +22,21 @@ for i=1:nIter
     F_fit = eightpoint(pts1(Matches,:), pts2(Matches,:),M);
    
     %keyboard;
-    inlier = 0;
+    inlier = 0
     for j = 1 :size(pts1,1)
-        l = F_fit * [pts1(j,:),1]';
+        l = F_fit * pts1(:,i);
         l = l/(norm(l(1:2)));
-        dist = abs(dot([pts2(j,:),1]',l)/norm(l(1:2)));
-        if dist < 1
-            %keyboard;
+        dist = dot(pts1(:,i),l)/norm(pts2(1:2,i));
+        if dist < 10
             inlier =inlier+1;
         end
     end
+    
     if inlier > bestIn
-        bestIn = inlier
-        bestF = F_fit
+        bestIn = inlier;
+        bestF = F_fit;
     end
+    
 end
 F = bestF;
 end
