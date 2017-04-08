@@ -7,7 +7,7 @@ load('../data/nist26_train.mat', 'train_data', 'train_labels')
 load('../data/nist26_test.mat', 'test_data', 'test_labels')
 load('../data/nist26_valid.mat', 'valid_data', 'valid_labels')
 
-[W, b] = InitializeNetwork(layers)
+[W, b] = InitializeNetwork(layers);
 
 for j = 1:num_epoch
     [W, b] = Train(W, b, train_data, train_labels, learning_rate);

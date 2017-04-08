@@ -11,8 +11,10 @@ function [grad_W, grad_b] = Backward(W, b, X, Y, act_a, act_h)
 E = Y - act_h{2};
 grad_W{2} = (act_a{1})' * (E.*act_a{2}).*(1-act_a{2});
 grad_b{2} = (E.*act_a{2}).*(1-act_a{2});
-E = (E.*(act_a{2}).*(1-act_a{2}))*W{2}';
-grad_W{1} = X' * (E.*act_a{1}).*(1-act_a{1});
-grad_b{1} = (E.*act_a{1}).*(1-act_a{1});
+E = (E.*(act_a(2)).*(1-act_a(2)))*W{2}';
+%Error = Y - 
+%grad_W{1} =  
 end
-
+function y = logisticSigmoid(x)
+    y = 1./(1 + exp(-x));
+end

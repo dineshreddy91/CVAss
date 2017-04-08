@@ -11,8 +11,10 @@ function [W, b] = Train(W, b, train_data, train_label, learning_rate)
 
 for i = 1:size(train_data,1)
 
-    
-    
+    [output, act_a, act_h] = Forward(W, b, train_data(i,:));
+    [grad_W, grad_b] = Backward(W, b, train_data(i,:),train_label(i,:), act_h, act_a);
+    [W, b] = UpdateParameters(W, b, grad_W, grad_b, learning_rate);
+    %keyboard;
     if mod(i, 100) == 0
         fprintf('\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b')
         fprintf('Done %.2f %%', i/size(train_data,1)*100)

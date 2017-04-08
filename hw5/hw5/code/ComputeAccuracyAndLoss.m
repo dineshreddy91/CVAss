@@ -4,7 +4,7 @@ function [accuracy, loss] = ComputeAccuracyAndLoss(W, b, data, labels)
 % and ground truth labels provided in 'data' and labels'. The function should return
 % the overall accuracy and the average cross-entropy loss.
 output = Classify(W, b, data);
-loss = -sum(dot(output,labels));
+loss = -sum(log(dot(output,labels)));
 [out out_label] = max(output');
 [gt gt_label] = max(labels');
 A = out_label-gt_label;
