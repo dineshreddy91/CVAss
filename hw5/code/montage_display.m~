@@ -1,0 +1,5 @@
+clear all;
+load('nist26_model_0.01.mat');
+load('../data/nist26_test.mat', 'test_data', 'test_labels');
+layer = W{1};
+for i = 
